@@ -33,6 +33,9 @@ This explainability is useful to:
 
 ```text
 .
+├── assets/
+│   ├── sentinelx-logo.png # Transparent header logo
+│   └── favicon.png        # Browser-tab icon
 ├── index.html            # Standalone interactive dashboard
 ├── phising_detector.py   # Python deep-analysis CLI
 └── README.md             # Project documentation
