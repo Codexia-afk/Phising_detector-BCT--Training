@@ -279,7 +279,7 @@ class DeepURLAnalyzer:
     def _check_suspicious_tld(self, r):
         for tld in SUSPICIOUS_TLDS:
             if self.host.endswith(tld):
-                r.add(8, f"Domain uses a TLD with high threat association (.{tld})", "low")
+                r.add(8, f"Domain uses a TLD with high threat association ({tld})", "low")
                 break
 
     def _check_keywords(self, r):

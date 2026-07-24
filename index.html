@@ -535,21 +535,141 @@ h1 {
   color: var(--text-dim);
   font-family: var(--font-mono);
 }
+
+/* Sentinel redesign */
+:root {
+  --bg-dark: #050505;
+  --bg-card: rgba(16, 16, 18, .88);
+  --bg-card-border: rgba(255, 255, 255, .09);
+  --bg-hover: rgba(255, 45, 58, .08);
+  --text-main: #f7f7f8;
+  --text-muted: #9b9ba3;
+  --text-dim: #626269;
+  --accent-cyan: #ff3347;
+  --accent-blue: #e5092f;
+  --accent-green: #42d392;
+  --accent-amber: #ffb547;
+  --accent-red: #ff293d;
+  --accent-purple: #a90b26;
+  --radius-lg: 20px;
+  --radius-md: 12px;
+}
+body {
+  padding: 0 24px 48px;
+  background:
+    linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px),
+    radial-gradient(circle at 78% 5%, rgba(229,9,47,.18), transparent 30%),
+    #050505;
+  background-size: 42px 42px, 42px 42px, auto, auto;
+}
+body::before {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 20;
+  background: linear-gradient(transparent 50%, rgba(0,0,0,.08) 50%);
+  background-size: 100% 4px; opacity: .22;
+}
+.container { max-width: 1240px; }
+.topbar {
+  height: 74px; display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid var(--bg-card-border); margin-bottom: 66px;
+}
+.brand { display: flex; align-items: center; gap: 12px; font-weight: 800; letter-spacing: -.02em; }
+.brand-mark {
+  width: 34px; height: 34px; display: grid; place-items: center; color: white;
+  background: var(--accent-red); clip-path: polygon(50% 0,94% 22%,84% 78%,50% 100%,16% 78%,6% 22%);
+  box-shadow: 0 0 28px rgba(255,41,61,.5);
+}
+.brand small { display:block; color: var(--text-dim); font: 9px var(--font-mono); letter-spacing: .18em; margin-top: 1px; }
+.top-actions { display:flex; align-items:center; gap: 18px; color:var(--text-muted); font: 11px var(--font-mono); }
+.system-state { display:flex; align-items:center; gap:8px; }
+.nav-btn, .ghost-btn {
+  border:1px solid var(--bg-card-border); background:rgba(255,255,255,.025); color:var(--text-main);
+  border-radius:9px; padding:9px 13px; font:600 11px var(--font-mono); cursor:pointer;
+}
+.nav-btn:hover,.ghost-btn:hover { border-color:rgba(255,41,61,.5); background:rgba(255,41,61,.08); }
+.hero { display:grid; grid-template-columns: 1.4fr .6fr; gap:50px; align-items:end; margin-bottom:32px; }
+.header { text-align:left; margin:0; }
+.status-pill { color:#ff6475; background:rgba(255,41,61,.08); border-color:rgba(255,41,61,.25); }
+.status-dot { background:var(--accent-red); box-shadow:0 0 12px var(--accent-red); }
+h1 { font-size:clamp(44px,6vw,76px); line-height:.98; max-width:760px; letter-spacing:-.055em; }
+h1 span { color:var(--accent-red); -webkit-text-fill-color:var(--accent-red); text-shadow:0 0 35px rgba(255,41,61,.22); }
+.subtitle { margin:20px 0 0; max-width:680px; font-size:15px; }
+.hero-stats { display:grid; grid-template-columns:repeat(2,1fr); border:1px solid var(--bg-card-border); border-radius:16px; overflow:hidden; background:rgba(10,10,11,.75); }
+.hero-stat { padding:18px; border-right:1px solid var(--bg-card-border); border-bottom:1px solid var(--bg-card-border); }
+.hero-stat:nth-child(even){border-right:0}.hero-stat:nth-child(n+3){border-bottom:0}
+.hero-stat strong { display:block; font:700 22px var(--font-mono); color:white; }
+.hero-stat span { color:var(--text-dim); font:10px var(--font-mono); text-transform:uppercase; letter-spacing:.08em; }
+.workspace { display:grid; grid-template-columns:minmax(0,1fr) 300px; gap:20px; align-items:start; }
+.scanner-shell { background:rgba(8,8,9,.78); border:1px solid var(--bg-card-border); border-radius:22px; padding:26px; box-shadow:0 30px 80px rgba(0,0,0,.45); }
+.section-kicker { color:var(--accent-red); font:700 10px var(--font-mono); letter-spacing:.16em; text-transform:uppercase; margin-bottom:8px; }
+.section-title { font-size:20px; margin-bottom:6px; }
+.section-note { color:var(--text-muted); font-size:12px; margin-bottom:20px; }
+.search-box { background:#0b0b0c; border-color:rgba(255,255,255,.12); box-shadow:none; }
+.search-box:focus-within { border-color:rgba(255,41,61,.62); box-shadow:0 0 0 3px rgba(255,41,61,.08),0 0 28px rgba(255,41,61,.08); }
+.btn-scan { background:linear-gradient(135deg,#ff3449,#bb0928); padding:0 24px; box-shadow:inset 0 1px rgba(255,255,255,.2); }
+.btn-scan:hover { box-shadow:0 8px 26px rgba(229,9,47,.35); }
+.preset-chip:hover { background:rgba(255,41,61,.1); color:#ff6575; border-color:rgba(255,41,61,.35); }
+.privacy-note { display:flex; gap:8px; align-items:center; color:var(--text-dim); font:10px var(--font-mono); margin-top:14px; }
+.privacy-note b { color:var(--accent-green); }
+.side-panel { display:flex; flex-direction:column; gap:14px; position:sticky; top:20px; }
+.side-card { background:rgba(13,13,15,.9); border:1px solid var(--bg-card-border); border-radius:16px; padding:18px; }
+.side-card h3 { font-size:13px; margin-bottom:13px; }
+.capability { display:flex; gap:11px; padding:10px 0; border-bottom:1px solid rgba(255,255,255,.055); }
+.capability:last-child{border:0;padding-bottom:0}.capability:first-of-type{padding-top:0}
+.cap-icon { width:26px;height:26px;border-radius:7px;background:rgba(255,41,61,.09);color:#ff4c5e;display:grid;place-items:center;font:700 11px var(--font-mono);flex:0 0 auto; }
+.capability b { font-size:11px;display:block;margin-bottom:2px}.capability p{font-size:10px;color:var(--text-dim);line-height:1.4}
+.history-empty{font-size:11px;color:var(--text-dim);line-height:1.5}
+.history-item{padding:9px 0;border-bottom:1px solid rgba(255,255,255,.05);cursor:pointer}
+.history-item:last-child{border:0}.history-host{font:11px var(--font-mono);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.history-meta{display:flex;justify-content:space-between;color:var(--text-dim);font:9px var(--font-mono);margin-top:4px}
+.scanner-progress { background:#0d0d0f; border-color:rgba(255,41,61,.18); }
+.progress-bar-fill { background:linear-gradient(90deg,#a50520,#ff394d); box-shadow:0 0 12px rgba(255,41,61,.45); }
+.report-container { margin-top:24px; }
+.score-card { grid-template-columns:auto minmax(0,1fr) auto; background:linear-gradient(115deg,rgba(30,8,12,.88),rgba(12,12,14,.94)); border-color:rgba(255,41,61,.22); box-shadow:0 16px 48px rgba(0,0,0,.32); }
+.report-actions { margin-left:auto; display:flex; gap:8px; }
+.verdict-info { min-width:0; }
+.target-url { max-width:550px; }
+.tab-btn.active { color:#ff4d60; border-bottom-color:var(--accent-red); }
+.intel-card-title { color:#ff5264; }
+.finding-item,.intel-card { background:rgba(14,14,16,.9); }
+.finding-item:hover { border-color:rgba(255,41,61,.25); }
+.action-plan { display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px; }
+.action-step { background:rgba(14,14,16,.9);border:1px solid var(--bg-card-border);border-radius:11px;padding:14px; }
+.action-step span{font:700 10px var(--font-mono);color:var(--accent-red)}.action-step b{display:block;font-size:11px;margin:7px 0 3px}.action-step p{font-size:10px;color:var(--text-dim);line-height:1.45}
+.json-view { color:#ff8592; }
+.footer { display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--bg-card-border);padding-top:24px;text-align:left; }
+.footer strong{color:var(--text-muted)}
+.toast { position:fixed;right:24px;bottom:24px;z-index:50;background:#151517;border:1px solid rgba(255,41,61,.35);border-radius:10px;padding:12px 16px;font:11px var(--font-mono);box-shadow:0 15px 40px #000;opacity:0;transform:translateY(10px);pointer-events:none;transition:.2s }
+.toast.show{opacity:1;transform:none}
+@media(max-width:900px){.hero{grid-template-columns:1fr}.hero-stats{max-width:500px}.workspace{grid-template-columns:1fr}.side-panel{position:static;display:grid;grid-template-columns:1fr 1fr}.report-actions{margin:12px 0 0}.score-card{grid-template-columns:auto 1fr}.report-actions{grid-column:1/-1}}
+@media(max-width:640px){body{padding:0 14px 36px}.topbar{margin-bottom:40px}.top-actions .system-state{display:none}.hero{gap:28px}h1{font-size:42px}.scanner-shell{padding:17px}.search-box{flex-direction:column}.btn-scan{height:48px;justify-content:center}.side-panel{grid-template-columns:1fr}.score-card{grid-template-columns:1fr}.report-actions{justify-content:center}.action-plan{grid-template-columns:1fr}.footer{display:block;line-height:2}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
 <div class="container">
-  <header class="header">
-    <div class="status-pill">
-      <span class="status-dot"></span>
-      Threat Engine Active
+  <nav class="topbar" aria-label="Primary navigation">
+    <div class="brand"><div class="brand-mark">S</div><div>SENTINEL<span style="color:var(--accent-red)">X</span><small>THREAT INTELLIGENCE</small></div></div>
+    <div class="top-actions"><span class="system-state"><span class="status-dot"></span> ENGINE ONLINE</span><button class="nav-btn" onclick="scrollToDocs()">PROJECT BRIEF ↗</button></div>
+  </nav>
+  <section class="hero">
+    <header class="header">
+      <div class="status-pill"><span class="status-dot"></span> DEFENSIVE SECURITY LAB // v2.0</div>
+      <h1>Expose the link.<br><span>Before it bites.</span></h1>
+      <p class="subtitle">An explainable phishing intelligence workspace that inspects URL structure, brand impersonation, encoding tricks, domain risk and transport security—without opening the target.</p>
+    </header>
+    <div class="hero-stats" aria-label="Engine capabilities">
+      <div class="hero-stat"><strong>40+</strong><span>Protected brands</span></div>
+      <div class="hero-stat"><strong>12</strong><span>Heuristic checks</span></div>
+      <div class="hero-stat"><strong>&lt;1s</strong><span>Local scan</span></div>
+      <div class="hero-stat"><strong>0</strong><span>Links visited</span></div>
     </div>
-    <h1>Deep Website & Phishing Analyzer</h1>
-    <p class="subtitle">
-      Inspect domain structures, SSL status, lexical signals, security headers, and potential phishing vectors in real-time.
-    </p>
-  </header>
-
+  </section>
+  <main class="workspace">
+  <section class="scanner-shell">
+  <div class="section-kicker">01 // URL FORENSICS</div>
+  <h2 class="section-title">Investigate a suspicious link</h2>
+  <p class="section-note">Paste a URL to generate an explainable risk score. The browser demo performs static analysis only.</p>
   <div class="search-box">
     <div class="search-input-wrapper">
       <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -558,17 +678,18 @@ h1 {
       <input type="text" id="urlInput" class="search-input" placeholder="Paste target website URL (e.g., https://example.com)" autocomplete="off" spellcheck="false">
     </div>
     <button id="scanBtn" class="btn-scan" onclick="startScan()">
-      <span>ANALYZE</span>
+      <span>RUN SCAN →</span>
     </button>
   </div>
 
   <div class="presets">
-    <span class="presets-label">Quick Samples:</span>
+    <span class="presets-label">Attack simulations:</span>
     <button class="preset-chip" onclick="loadSample('https://www.wikipedia.org')">wikipedia.org</button>
     <button class="preset-chip" onclick="loadSample('http://paypa1-secure-login.tk/verify-account/update.php')">typosquat link</button>
     <button class="preset-chip" onclick="loadSample('http://192.168.1.1/admin/login.php')">raw IP link</button>
     <button class="preset-chip" onclick="loadSample('https://accounts.google.xn--80ak6aa92e/signin')">punycode link</button>
   </div>
+  <div class="privacy-note"><b>● SAFE MODE</b> Target URLs are parsed locally and never opened by this interface.</div>
 
   <div id="progressBox" class="scanner-progress">
     <div class="progress-text">
@@ -596,6 +717,7 @@ h1 {
         <div id="verdictBadge" class="verdict-badge">VERDICT</div>
         <div id="targetUrlEcho" class="target-url">url</div>
       </div>
+      <div class="report-actions"><button class="ghost-btn" onclick="copyReport()">COPY JSON</button><button class="ghost-btn" onclick="downloadReport()">EXPORT</button></div>
     </div>
 
     <div class="tab-nav">
@@ -608,6 +730,11 @@ h1 {
     <div class="tab-content">
       <div id="tab-threats" class="tab-panel active">
         <div id="findingsList" class="findings-list"></div>
+        <div class="action-plan">
+          <div class="action-step"><span>01 // CONTAIN</span><b>Do not open the URL</b><p>Isolate the message and preserve the link as evidence.</p></div>
+          <div class="action-step"><span>02 // VERIFY</span><b>Use a trusted channel</b><p>Navigate to the claimed service manually or contact its owner.</p></div>
+          <div class="action-step"><span>03 // REPORT</span><b>Escalate suspicious links</b><p>Share the exported evidence with your security team.</p></div>
+        </div>
       </div>
 
       <div id="tab-network" class="tab-panel">
@@ -659,11 +786,24 @@ h1 {
       </div>
     </div>
   </div>
+  </section>
+  <aside class="side-panel">
+    <section class="side-card"><div class="section-kicker">DETECTION STACK</div><h3>What the engine inspects</h3>
+      <div class="capability"><div class="cap-icon">01</div><div><b>Brand impersonation</b><p>Edit-distance matching catches lookalike domains.</p></div></div>
+      <div class="capability"><div class="cap-icon">02</div><div><b>URL obfuscation</b><p>Punycode, raw IPs, @ redirects and deep nesting.</p></div></div>
+      <div class="capability"><div class="cap-icon">03</div><div><b>Risk vocabulary</b><p>Credential and urgency language in paths.</p></div></div>
+      <div class="capability"><div class="cap-icon">04</div><div><b>Transport posture</b><p>HTTP, unusual ports and suspicious TLD signals.</p></div></div>
+    </section>
+    <section class="side-card"><div class="section-kicker">SESSION LOG</div><h3>Recent investigations</h3><div id="scanHistory" class="history-empty">No scans in this session. Analyze a sample to begin.</div></section>
+    <section class="side-card" id="projectBrief"><div class="section-kicker">WHY IT MATTERS</div><h3>Built for explainability</h3><p class="history-empty">Every score maps to human-readable evidence. This makes the project useful for awareness training, SOC triage prototypes and future ML comparison—not just a black-box verdict.</p></section>
+  </aside>
+  </main>
 
   <footer class="footer">
-    Deep Website Security & Phishing Detector Engine
+    <span><strong>SENTINELX</strong> // Explainable phishing defense</span><span>Educational security research • Use responsibly</span>
   </footer>
 </div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
 
 <script>
 const KNOWN_BRANDS = [
@@ -885,6 +1025,9 @@ function loadSample(url) {
   startScan();
 }
 
+let currentReport = null;
+let sessionHistory = [];
+
 function startScan() {
   const input = document.getElementById('urlInput').value;
   if (!input.trim()) return;
@@ -927,6 +1070,14 @@ function startScan() {
 }
 
 function renderReport(res) {
+  if (res.error) {
+    showToast(res.error);
+    return;
+  }
+  currentReport = res;
+  sessionHistory.unshift({ host: res.details.dns.host, score: res.score, url: res.cleanUrl });
+  sessionHistory = sessionHistory.slice(0, 5);
+  renderHistory();
   const reportArea = document.getElementById('reportArea');
   reportArea.style.display = 'block';
 
@@ -994,8 +1145,55 @@ function switchTab(tabId) {
   document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
   document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
 
-  event.currentTarget.classList.add('active');
+  const clicked = [...document.querySelectorAll('.tab-btn')].find(btn => btn.getAttribute('onclick')?.includes(`'${tabId}'`));
+  if (clicked) clicked.classList.add('active');
   document.getElementById('tab-' + tabId).classList.add('active');
+}
+
+function renderHistory() {
+  const root = document.getElementById('scanHistory');
+  root.className = '';
+  root.innerHTML = sessionHistory.map((item, index) => `
+    <div class="history-item" onclick="loadSample(sessionHistory[${index}].url)" title="Analyze again">
+      <div class="history-host">${escapeHtml(item.host)}</div>
+      <div class="history-meta"><span>SCAN ${String(index + 1).padStart(2, '0')}</span><span style="color:${item.score >= 40 ? 'var(--accent-red)' : 'var(--accent-green)'}">${item.score}/100</span></div>
+    </div>`).join('');
+}
+
+function escapeHtml(value) {
+  return value.replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[char]));
+}
+
+function showToast(message) {
+  const toast = document.getElementById('toast');
+  toast.textContent = message;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2200);
+}
+
+async function copyReport() {
+  if (!currentReport) return;
+  try {
+    await navigator.clipboard.writeText(JSON.stringify(currentReport, null, 2));
+    showToast('Threat report copied to clipboard');
+  } catch {
+    showToast('Clipboard access was blocked');
+  }
+}
+
+function downloadReport() {
+  if (!currentReport) return;
+  const blob = new Blob([JSON.stringify(currentReport, null, 2)], { type: 'application/json' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = `sentinelx-${currentReport.details.dns.host || 'report'}.json`;
+  link.click();
+  URL.revokeObjectURL(link.href);
+  showToast('JSON evidence report exported');
+}
+
+function scrollToDocs() {
+  document.getElementById('projectBrief').scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
 document.getElementById('urlInput').addEventListener('keydown', e => {
